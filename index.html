@@ -156,7 +156,118 @@
         </div>
     </section>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="js/script.js"></script>
+    <script>
+        // Actividad en clase: Cambio de tema
+        const btnTema = document.getElementById('btn-tema');
+        let isDarkMode = false;
+
+        btnTema.addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
+            isDarkMode = document.body.classList.contains('dark-mode');
+            btnTema.textContent = isDarkMode ? 'Modo claro' : 'Modo oscuro';
+        });
+
+        // Práctica para la casa #1: Saludo dinámico
+        const nombre = prompt('Por favor, ingresa tu nombre:');
+        const saludoElement = document.getElementById('saludo');
+        if (nombre) {
+            saludoElement.textContent = `¡Hola, ${nombre}! Bienvenido.`;
+        } else {
+            saludoElement.textContent = `¡Hola! Bienvenido.`;
+        }
+
+        // Práctica para la casa #2: Botón de ocultar/mostrar
+        const toggleBtn = document.getElementById('toggle-btn');
+        const paragraphToToggle = document.getElementById('toggle-paragraph');
+
+        toggleBtn.addEventListener('click', () => {
+            if (paragraphToToggle.style.display === 'none') {
+                paragraphToToggle.style.display = 'block';
+            } else {
+                paragraphToToggle.style.display = 'none';
+            }
+        });
+
+        // Práctica para la casa #3: Cambio de imagen
+        const prevBtn = document.getElementById('prev-img');
+        const nextBtn = document.getElementById('next-img');
+        const imgElement = document.getElementById('image-changer');
+
+        const images = [
+            'https://www.ubilapaz.edu.bo/wp-content/uploads/2023/12/PAGINA-PRINCIPAL-ADMINISTRACION-DE-EMPRESAS.png',
+            'https://www.ubilapaz.edu.bo/wp-content/uploads/2023/12/PAGINA-PRINCIPAL-AUDITORIA.png',
+            'https://www.ubilapaz.edu.bo/wp-content/uploads/2023/12/PAGINA-PRINCIPAL-DERECHO.png',
+            'https://www.ubilapaz.edu.bo/wp-content/uploads/2023/12/PAGINA-PRINCIPAL-INGENIERIA-DE-SISTEMAS.png',
+            'https://www.ubilapaz.edu.bo/wp-content/uploads/2023/12/PAGINA-PRINCIPAL-PSICOLOGIA.png'
+
+        ];
+        let currentImageIndex = 0;
+
+        imgElement.src = images[currentImageIndex];
+
+        prevBtn.addEventListener('click', () => {
+            currentImageIndex = (currentImageIndex - 1 + images.length) % images.length;
+            imgElement.src = images[currentImageIndex];
+        });
+
+        nextBtn.addEventListener('click', () => {
+            currentImageIndex = (currentImageIndex + 1) % images.length;
+            imgElement.src = images[currentImageIndex];
+        });
+
+        // Práctica para la casa #4: Lista de tareas (To-do)
+        const taskInput = document.getElementById('task-input');
+        const addTaskBtn = document.getElementById('add-task-btn');
+        const taskList = document.getElementById('task-list');
+
+        addTaskBtn.addEventListener('click', () => {
+            const taskText = taskInput.value.trim();
+            if (taskText !== '') {
+                const listItem = document.createElement('li');
+                listItem.textContent = taskText;
+                taskList.appendChild(listItem);
+                taskInput.value = '';
+            }
+        });
+
+        // Práctica para la casa #5: Validación de edad
+        const ageForm = document.getElementById('age-form');
+        const ageInput = document.getElementById('age-input');
+        const ageMessage = document.getElementById('age-message');
+
+        ageForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const age = parseInt(ageInput.value, 10);
+            if (isNaN(age) || age <= 0) {
+                ageMessage.textContent = 'Por favor, ingresa una edad válida.';
+                ageMessage.style.color = 'red';
+            } else if (age >= 18) {
+                ageMessage.textContent = 'Eres mayor de edad. Acceso concedido.';
+                ageMessage.style.color = 'green';
+            } else {
+                ageMessage.textContent = 'Eres menor de edad. Acceso denegado.';
+                ageMessage.style.color = 'red';
+            }
+        });
+
+        // Práctica para la casa #6: Efecto al pasar el mouse
+        const hoverImage = document.getElementById('card');
+
+        hoverImage.addEventListener('mouseover', () => {
+            hoverImage.style.transform = 'scale(1.2)';
+            hoverImage.style.transition = 'transform 0.3s ease';
+        });
+
+        hoverImage.addEventListener('mouseout', () => {
+            hoverImage.style.transform = 'scale(1)';
+        });
+        hoverImage.addEventListener('click', () => {
+           
+            hoverImage.style.opacity = '0.5';
+           
+        });
+
+    </script>
 </body>
 
 </html>
